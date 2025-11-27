@@ -1,10 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- Change groupId/artifactId/version as appropriate -->
   <groupId>in.krishna.bank</groupId>
   <artifactId>DevOpsProject</artifactId>
   <version>1.0-SNAPSHOT</version>
@@ -19,7 +19,7 @@
   </properties>
 
   <dependencies>
-    <!-- Servlet API for compile-time only; app server supplies it at runtime -->
+    <!-- Servlet API - compile-time only -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -27,32 +27,38 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- Optional: JSTL if you use JSPs -->
+    <!-- JSTL if you use JSPs -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
-
-    <!-- Add other dependencies here -->
   </dependencies>
 
   <build>
     <finalName>DevOpsProject</finalName>
 
-    <!-- Optional: configure war plugin (not strictly necessary) -->
     <plugins>
+      <!-- Maven Compiler Plugin -->
       <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.4.1</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
         <configuration>
-          <!-- exclude servlet-api from being packaged (provided scope already does this) -->
-          <packagingExcludes>WEB-INF/lib/javax.servlet-api-*.jar</packagingExcludes>
+          <release>11</release>
         </configuration>
-</plugin>
-<artifactId>maven-war-plugin</artifactId>
-    <version>3.3.2</version>
+      </plugin>
+
+      <!-- War plugin with a valid version -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.2</version>
+        <configuration>
+          <!-- keep provided dependencies out of WEB-INF/lib -->
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
-
