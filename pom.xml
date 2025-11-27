@@ -49,7 +49,9 @@
           <!-- exclude servlet-api from being packaged (provided scope already does this) -->
           <packagingExcludes>WEB-INF/lib/javax.servlet-api-*.jar</packagingExcludes>
         </configuration>
-      </plugin>
+</plugin>
+<artifactId>maven-war-plugin</artifactId>
+    <version>3.3.2</version>
     </plugins>
   </build>
 </project>
